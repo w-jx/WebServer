@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-04-09 20:56:42
+ * @LastEditTime: 2021-04-09 21:04:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edi
+ * @FilePath: /WebServer/webserver.h
+ */
 #ifndef WEBSERVER_H
 #define WEBSERVER_H
 
@@ -24,11 +32,13 @@ class WebServer
 public:
     WebServer();
     ~WebServer();
+    
 
+    
     void init(int port , string user, string passWord, string databaseName,
               int log_write , int opt_linger, int trigmode, int sql_num,
               int thread_num, int close_log, int actor_model);
-
+    
     void thread_pool();
     void sql_pool();
     void log_write();
@@ -45,15 +55,15 @@ public:
 
 public:
     //基础
-    int m_port;
-    char *m_root;
-    int m_log_write;
-    int m_close_log;
-    int m_actormodel;
+    int m_port; //端口
+    char *m_root; //m_root? 未知
+    int m_log_write;//日志写入方式 同步还是异步
+    int m_close_log;//是否关闭 日志
+    int m_actormodel;//并发模型 Reactor还是Proactor
 
-    int m_pipefd[2];
-    int m_epollfd;
-    http_conn *users;
+    int m_pipefd[2];//管道读写两端
+    int m_epollfd;//epoll 句柄
+    http_conn *users;//http用户？？
 
     //数据库相关
     connection_pool *m_connPool;

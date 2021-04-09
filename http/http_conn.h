@@ -73,6 +73,16 @@ public:
     ~http_conn() {}
 
 public:
+    /**
+     * @description: http_conn连接类的初始化
+     * @param {int} sockfd  套接字
+     * @param {const sockaddr_in} &addr tcp地址结构
+     * @param {char} *root  未知参数
+     * @param {string} user 用户名
+     * @param {string} passwd 密码
+     * @param {string} sqlname 数据库名字
+     * @return {*}
+     */
     void init(int sockfd, const sockaddr_in &addr, char *, int, int, string user, string passwd, string sqlname);
     void close_conn(bool real_close = true);
     void process();
@@ -88,6 +98,11 @@ public:
 
 
 private:
+    /**
+     * @description: init私有成员函数 初始化新接受的连接
+     * @param {*}
+     * @return {*}
+     */
     void init();
     HTTP_CODE process_read();
     bool process_write(HTTP_CODE ret);
@@ -114,8 +129,8 @@ public:
     int m_state;  //读为0, 写为1
 
 private:
-    int m_sockfd;
-    sockaddr_in m_address;
+    int m_sockfd;//http_conn 套接字
+    sockaddr_in m_address;//地质结构
     char m_read_buf[READ_BUFFER_SIZE];
     int m_read_idx;
     int m_checked_idx;
@@ -141,8 +156,8 @@ private:
     char *doc_root;
 
     map<string, string> m_users;
-    int m_TRIGMode;
-    int m_close_log;
+    int m_TRIGMode;//并发模型
+    int m_close_log;//关闭日志
 
     char sql_user[100];
     char sql_passwd[100];

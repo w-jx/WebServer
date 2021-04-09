@@ -27,7 +27,21 @@ WebServer::~WebServer()
     delete[] users_timer;
     delete m_pool;
 }
-
+/*
+  * @description: 服务器初始化
+  * @param {int} port 端口
+  * @param {string} User 用户名
+  * @param {string} PassWord 密码
+  * @param {string} DataBaseName 数据库名字
+  * @param {int} log_write 日志写入方式 同步还是异步
+  * @param {int} opt_linger 最大连接数
+  * @param {int} trigmode 触发模型
+  * @param {int} sql_num 数据库连接池数量
+  * @param {int} thread_num 线程池数量
+  * @param {int} close_log 是否关闭日志？
+  * @param {int} actor_model 并发模型？
+  * @return {*}
+  */
 void WebServer::init(int port, string user, string passWord, string databaseName, int log_write, 
                      int opt_linger, int trigmode, int sql_num, int thread_num, int close_log, int actor_model)
 {
